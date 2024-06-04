@@ -1,0 +1,134 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#turn-indicator {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(8, 50px);
+  grid-template-rows: repeat(8, 50px);
+  gap: 1px;
+  background-color: #f0f0f0;
+}
+
+#game-board div {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.75rem;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid;
+}
+
+/* Player-specific piece backgrounds */
+#game-board .player1.T {
+  background-color: blue;
+  color: white;
+}
+
+#game-board .player2.T {
+  background-color: red;
+  color: white;
+}
+
+#game-board .player1.R::before {
+  background-color: blue;
+}
+
+#game-board .player2.R::before {
+  background-color: red;
+}
+
+#game-board .K {
+  background-color: black;
+  color: white;
+}
+
+#game-board .C {
+  background-color: grey;
+  color: white;
+}
+
+/* Ricochet (diagonal line) */
+#game-board .R::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  transform: rotate(45deg);
+  background-color: currentColor;
+}
+
+/* Semi Ricochet (half triangle) */
+#game-board .player1.S::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-bottom: 50px solid blue;
+  top: 0;
+  left: 0;
+}
+
+#game-board .player2.S::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-bottom: 50px solid red;
+  top: 0;
+  left: 0;
+}
+
+#controls {
+  margin-top: 20px;
+}
+
+#controls button {
+  margin: 5px;
+  padding: 10px;
+}
+
+#timer {
+  margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  #game-board {
+      grid-template-columns: repeat(8, 30px);
+      grid-template-rows: repeat(8, 30px);
+  }
+
+  #game-board div {
+      width: 30px;
+      height: 30px;
+      font-size: 1rem;
+  }
+
+  #controls button {
+      padding: 5px;
+  }
+}
